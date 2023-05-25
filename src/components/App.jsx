@@ -1,19 +1,14 @@
 import { Fragment } from "react";
 import { Component } from "react";
+import Statistics from "./Statistics/Statistics";
+import FeedbackOptions from "./FeedbackOptions/FeedbackOptions";
+import options from "data/ButtonOptions";
+import Section from "./Section/Section";
 
-// export const App = () => {
-//   return (
-//   <Fragment>
-//     <div>
-//     </div>
-//   </Fragment>
-//   );
-// };
+export default class App extends Component {
 
-class App extends Component {
-
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       good: 0,
@@ -21,28 +16,44 @@ class App extends Component {
       bad: 0
     };
   }
-
+ 
   countTotalFeedback = () => this.state.good + this.state.neutral + this.state.bad;
+  
   countPositiveFeedbackPercentage = () => Math.round(this.state.good / (this.countTotalFeedback()) * 100);
   
+
+  clickHandler = (type) => {
+    this.setState(
+      prevState => ({
+        [type]: prevState[type] + 1
+      }),
+    );
+  }   
   
 
   render () {
+
     return (
       <Fragment>
-        <section>Please leave feedback </section>
-        <button>Good</button>
-        <button>Neutral</button>
-        <button>Bad</button>
-        <span>Good: {this.state.good}</span>
-        <span>Neutral: {this.state.neutral}</span>
-        <span>Bad: {this.state.bad}</span>
-        <span>Total:{this.countTotalFeedback()}</span>
-        <span>Positive feedback: {this.countPositiveFeedbackPercentage()} %</span>
+        <Section title='Please leave feedback'>
+
+        <FeedbackOptions 
+          options = {options}
+          onLeaveFeedback = {() => this.clickHandler('good')}
+        />
+        
+        <Statistics 
+          good = {this.state.good}
+          neutral = {this.state.neutral}
+          bad = {this.state.bad}
+          total = {this.countTotalFeedback()}
+          positivePercentage = {this.countPositiveFeedbackPercentage()}
+        />
+
+        </Section>
       </Fragment> 
       
     )
   }
 }
 
-export default App;
