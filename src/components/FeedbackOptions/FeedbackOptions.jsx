@@ -12,7 +12,7 @@ export default class FeedbackOptions extends Component {
       <div>
         <ul className={css.buttonsSection}>
             {options.map((option => <li key={option.id}>
-                <button className={css.button} type='button' onClick={onLeaveFeedback}>{option.name}</button>
+                <button className={css.button} type='button' onClick={() => onLeaveFeedback(option.type)}>{option.name}</button>
             </li>))}
         </ul>
       </div>

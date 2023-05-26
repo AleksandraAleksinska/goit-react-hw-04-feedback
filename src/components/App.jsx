@@ -7,29 +7,25 @@ import Section from "./Section/Section";
 
 export default class App extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
+ state = {
       good: 0,
       neutral: 0,
       bad: 0
-    };
-  }
- 
+ }
+  
   countTotalFeedback = () => this.state.good + this.state.neutral + this.state.bad;
   
   countPositiveFeedbackPercentage = () => Math.round(this.state.good / (this.countTotalFeedback()) * 100);
   
-
+  
   clickHandler = (type) => {
     this.setState(
       prevState => ({
         [type]: prevState[type] + 1
       }),
     );
-  }   
   
+  }   
 
   render () {
 
@@ -39,7 +35,7 @@ export default class App extends Component {
 
         <FeedbackOptions 
           options = {options}
-          onLeaveFeedback = {() => this.clickHandler('good')}
+          onLeaveFeedback = {this.clickHandler}
         />
         
         <Statistics 
