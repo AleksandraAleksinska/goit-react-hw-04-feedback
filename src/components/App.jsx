@@ -33,18 +33,18 @@ export default class App extends Component {
       <Fragment>
         <Section title='Please leave feedback'>
 
-        <FeedbackOptions 
-          options = {options}
-          onLeaveFeedback = {this.clickHandler}
-        />
+          <FeedbackOptions 
+            options = {options}
+            onLeaveFeedback = {this.clickHandler}
+          />
         
-        <Statistics 
-          good = {this.state.good}
-          neutral = {this.state.neutral}
-          bad = {this.state.bad}
-          total = {this.countTotalFeedback()}
-          positivePercentage = {this.countPositiveFeedbackPercentage()}
-        />
+          <Statistics 
+            good = {this.state.good}
+            neutral = {this.state.neutral}
+            bad = {this.state.bad}
+            total = {this.countTotalFeedback()}
+            positivePercentage = {this.countPositiveFeedbackPercentage()}
+          />
 
         </Section>
       </Fragment> 
